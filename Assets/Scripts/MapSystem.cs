@@ -13,46 +13,41 @@ public class MapSystem : MonoBehaviour {
     public void Start()
     {
         Current_Map = new List<GameObject>();
+        Camera.main.orthographicSize = Mathf.Max(Map_Size.x / 2, Map_Size.y / 2);
+        GenerateBasicMap();
     }
 
     public void GenerateBasicMap()
     {
+        //Create Horizontal Walls
+        for(int i = 0; i < Map_Size.x; i++)
+        {
+            Vector2 position_offset = new Vector2(Map_Size.x / 2, (Map_Size.y / 2) - 1);
+            Vector2 top_position = new Vector2(i, 0) - position_offset;
+            Vector2 bottom_position = new Vector2(i, Map_Size.y - 1) - position_offset;
+            CreateWall(top_position);
+            CreateWall(bottom_position);
+        }
+
+        //Create Vertical Walls
+        for(int i = 0; i < Map_Size.y - 2; i++)
+        {
+            Vector2 position_offset = new Vector2(Map_Size.x / 2, ((Map_Size.y/2) - 2));
+            Vector2 left_position = new Vector2(0, i) - position_offset;
+            Vector2 right_position = new Vector2(Map_Size.x - 1, i) - position_offset;
+            CreateWall(left_position);
+            CreateWall(right_position);
+        }
+
         CreateBackground();
-        //Create Top Wall
-        for(int i = 0; i < Map_Size.x; i++)
-        {
-            Vector2 position_offset = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
-            CreateWall(new Vector2(i - position_offset.x, 0 - position_offset.y));
-        }
-
-        //Create Bottom Wall
-        for(int i = 0; i < Map_Size.x; i++)
-        {
-            Vector2 position_offset = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
-            CreateWall(new Vector2(i - position_offset.x, position_offset.y));
-        }
-
-        //Create Left Wall
-        for(int i = 0; i < Map_Size.y; i++)
-        {
-            Vector2 position_offset = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
-            CreateWall(new Vector2(0 - position_offset.x, i - position_offset.y));
-        }
-
-        //Create Right Wall
-        for(int i = 0; i < Map_Size.y; i++)
-        {
-            Vector2 position_offset = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
-            CreateWall(new Vector2(position_offset.x, i - position_offset.y));
-        }
     }
 
     private void CreateBackground()
     {
         GameObject new_background = Instantiate(Background);
 
-        new_background.transform.localScale.Set(Map_Size.x, Map_Size.y, new_background.transform.localScale.z);
-        new_background.transform.position.Set(Map_Size.x / 2, Map_Size.y / 2, new_background.transform.position.z);
+        new_background.transform.localScale = Map_Size;
+        //new_background.transform.position = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
 
         Current_Map.Add(new_background);
     }
@@ -60,7 +55,7 @@ public class MapSystem : MonoBehaviour {
     private void CreateWall(Vector2 position)
     {
         GameObject new_wall = Instantiate(Wall);
-        new_wall.transform.position.Set(position.x, position.y, new_wall.transform.position.z);
+        new_wall.transform.position = position + new Vector2(0.5f, -0.5f);
         Current_Map.Add(new_wall);
     }
 
