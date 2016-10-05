@@ -17,24 +17,51 @@ public class MapSystem : MonoBehaviour {
 
     public void GenerateBasicMap()
     {
+        CreateBackground();
+        //Create Top Wall
+        for(int i = 0; i < Map_Size.x; i++)
+        {
+            Vector2 position_offset = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
+            CreateWall(new Vector2(i - position_offset.x, 0 - position_offset.y));
+        }
 
+        //Create Bottom Wall
+        for(int i = 0; i < Map_Size.x; i++)
+        {
+            Vector2 position_offset = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
+            CreateWall(new Vector2(i - position_offset.x, position_offset.y));
+        }
+
+        //Create Left Wall
+        for(int i = 0; i < Map_Size.y; i++)
+        {
+            Vector2 position_offset = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
+            CreateWall(new Vector2(0 - position_offset.x, i - position_offset.y));
+        }
+
+        //Create Right Wall
+        for(int i = 0; i < Map_Size.y; i++)
+        {
+            Vector2 position_offset = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
+            CreateWall(new Vector2(position_offset.x, i - position_offset.y));
+        }
     }
 
-    private GameObject CreateBackground()
+    private void CreateBackground()
     {
         GameObject new_background = Instantiate(Background);
 
         new_background.transform.localScale.Set(Map_Size.x, Map_Size.y, new_background.transform.localScale.z);
         new_background.transform.position.Set(Map_Size.x / 2, Map_Size.y / 2, new_background.transform.position.z);
 
-        return new_background;
+        Current_Map.Add(new_background);
     }
 
-    private GameObject CreateWall(Vector2 position)
+    private void CreateWall(Vector2 position)
     {
         GameObject new_wall = Instantiate(Wall);
         new_wall.transform.position.Set(position.x, position.y, new_wall.transform.position.z);
-        return new_wall;
+        Current_Map.Add(new_wall);
     }
 
     public void ClearMap()
