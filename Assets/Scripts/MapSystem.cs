@@ -6,7 +6,8 @@ public class MapSystem : MonoBehaviour {
 
     public GameObject Background;
     public GameObject Wall;
-    public Vector2 Map_Size;
+    public Vector2 Map_Size = new Vector2(10.0f, 10.0f);
+    public Vector2 Tile_Size = new Vector2(1.0f, 1.0f);
 
     private List<GameObject> Current_Map;
 
@@ -19,24 +20,25 @@ public class MapSystem : MonoBehaviour {
 
     public void GenerateBasicMap()
     {
-        //Create Horizontal Walls
-        for(int i = 0; i < Map_Size.x; i++)
-        {
-            Vector2 position_offset = new Vector2(Map_Size.x / 2, (Map_Size.y / 2) - 1);
-            Vector2 top_position = new Vector2(i, 0) - position_offset;
-            Vector2 bottom_position = new Vector2(i, Map_Size.y - 1) - position_offset;
-            CreateWall(top_position);
-            CreateWall(bottom_position);
-        }
+        Vector2 byX, byY;
+        byX = byY = Vector2.zero;
+        Vector2 offset = (Map_Size / 2);
+        offset.Scale(Vector2.left + Vector2.up);
 
-        //Create Vertical Walls
-        for(int i = 0; i < Map_Size.y - 2; i++)
+        int max = (int)(Map_Size.x + Map_Size.y - 1);
+        for(int i = 0; i < max; i++)
         {
-            Vector2 position_offset = new Vector2(Map_Size.x / 2, ((Map_Size.y/2) - 2));
-            Vector2 left_position = new Vector2(0, i) - position_offset;
-            Vector2 right_position = new Vector2(Map_Size.x - 1, i) - position_offset;
-            CreateWall(left_position);
-            CreateWall(right_position);
+            bool vectorsEqual = Vector2.SqrMagnitude(byX - byY) == 0;
+
+            CreateWall(byX + offset);
+
+            if(!vectorsEqual)
+            {
+                CreateWall(byY + offset);
+            }
+
+            byX += (Mathf.Abs(byX.x) < Map_Size.x-1) ? Vector2.right : Vector2.down;
+            byY += (Mathf.Abs(byY.y) < Map_Size.y-1) ? Vector2.down : Vector2.right;
         }
 
         CreateBackground();
