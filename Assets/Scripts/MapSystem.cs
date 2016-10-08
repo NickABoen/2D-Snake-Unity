@@ -10,11 +10,17 @@ public class MapSystem : MonoBehaviour {
     public Vector2 Tile_Size = new Vector2(1.0f, 1.0f);
 
     private List<GameObject> Current_Map;
+    private Vector2 cam_size;
 
     public void Start()
     {
         Current_Map = new List<GameObject>();
-        Camera.main.orthographicSize = Mathf.Max(Map_Size.x / 2, Map_Size.y / 2);
+        //Camera.main.orthographicSize = Mathf.Max(Map_Size.x / 2, Map_Size.y / 2);
+        Vector2 new_camera_size = Map_Size;
+        new_camera_size.Scale(Tile_Size);
+        new_camera_size = new_camera_size / 2;
+        Camera.main.orthographicSize = Mathf.Max(new_camera_size.x, new_camera_size.y);
+        cam_size = new_camera_size;
         GenerateBasicMap();
     }
 
@@ -48,8 +54,9 @@ public class MapSystem : MonoBehaviour {
     {
         GameObject new_background = Instantiate(Background);
 
-        new_background.transform.localScale = Map_Size;
-        //new_background.transform.position = new Vector2(Map_Size.x / 2, Map_Size.y / 2);
+        Vector2 background_size = Map_Size;
+        background_size.Scale(Tile_Size);
+        new_background.transform.localScale = background_size;
 
         Current_Map.Add(new_background);
     }
@@ -57,7 +64,8 @@ public class MapSystem : MonoBehaviour {
     private void CreateWall(Vector2 position)
     {
         GameObject new_wall = Instantiate(Wall);
-        new_wall.transform.position = position + new Vector2(0.5f, -0.5f);
+        new_wall.transform.localScale = Tile_Size;
+        new_wall.transform.position = position + (Tile_Size / 2);
         Current_Map.Add(new_wall);
     }
 
