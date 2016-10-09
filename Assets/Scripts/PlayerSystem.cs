@@ -10,6 +10,10 @@ public class PlayerSystem : MonoBehaviour {
 	void Start () {
 	    
 	}
+
+    public void Spawn(Vector2 position)
+    {
+    }
 	
 	// Update is called once per frame
 	void Update () {
