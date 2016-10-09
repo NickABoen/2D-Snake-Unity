@@ -26,9 +26,11 @@ public class MapSystem : MonoBehaviour {
     {
         Vector2 byX, byY;
         byX = byY = Vector2.zero;
-        Vector2 offset = (Map_Size / 2);
+        Vector2 offset_initial = Map_Size;
+        offset_initial.Scale(Tile_Size);
+        Vector2 offset = (offset_initial / 2);
         offset.Scale(Vector2.left + Vector2.up);
-        offset.y -= 1;
+        offset.y -= Tile_Size.y;
 
         int max = (int)(Map_Size.x + Map_Size.y - 1);
         for(int i = 0; i < max; i++)
