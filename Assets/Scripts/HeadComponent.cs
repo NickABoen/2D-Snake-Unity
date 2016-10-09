@@ -24,4 +24,9 @@ public class HeadComponent : MonoBehaviour {
         if (add_tail) current_size++;
         position += direction;
     }
+
+    public void AddSegment()
+    {
+        Size++;
+    }
 }
