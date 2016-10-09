@@ -10,7 +10,6 @@ public class MapSystem : MonoBehaviour {
     public Vector2 Tile_Size = new Vector2(1.0f, 1.0f);
 
     private List<GameObject> Current_Map;
-    private Vector2 cam_size;
 
     public void Start()
     {
@@ -20,7 +19,6 @@ public class MapSystem : MonoBehaviour {
         new_camera_size.Scale(Tile_Size);
         new_camera_size = new_camera_size / 2;
         Camera.main.orthographicSize = Mathf.Max(new_camera_size.x, new_camera_size.y);
-        cam_size = new_camera_size;
         GenerateBasicMap();
     }
 
@@ -30,6 +28,7 @@ public class MapSystem : MonoBehaviour {
         byX = byY = Vector2.zero;
         Vector2 offset = (Map_Size / 2);
         offset.Scale(Vector2.left + Vector2.up);
+        offset.y -= 1;
 
         int max = (int)(Map_Size.x + Map_Size.y - 1);
         for(int i = 0; i < max; i++)
