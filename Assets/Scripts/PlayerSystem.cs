@@ -15,6 +15,7 @@ public class PlayerSystem : MonoBehaviour {
     public void Spawn(Vector2 position)
     {
         playerHead = Instantiate(HeadComponent.Head_Prefab).GetComponent<HeadComponent>();
+        playerHead.Size = StartingSegments;
     }
 	
 	// Update is called once per frame
