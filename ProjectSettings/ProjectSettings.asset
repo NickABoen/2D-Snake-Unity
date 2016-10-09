@@ -528,7 +528,7 @@ PlayerSettings:
   XboxOne::VR::enabledDevices: []
   iOS::VR::enabledDevices: []
   tvOS::VR::enabledDevices: []
-  cloudProjectId: 0753783e-ed27-4032-a2b9-713550bf6b2f
-  projectName: Unity Github 2D Starter Project
+  cloudProjectId: d38f7710-dc80-4cc0-888c-9702ab88428f
+  projectName: Snake
   organizationId: versaiteis
   cloudEnabled: 0
