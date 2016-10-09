@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Background: {fileID: 1000012488284038, guid: a5bb50a64a8ecb144b0ac35c46cd000c, type: 2}
   Wall: {fileID: 1000011363515522, guid: d5cf4557b12c0cd47a6da1f5b122ce8c, type: 2}
-  Map_Size: {x: 10, y: 10}
+  Map_Size: {x: 100, y: 100}
   Tile_Size: {x: 1, y: 1}
 --- !u!4 &150506662
 Transform:

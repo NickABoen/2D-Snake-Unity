@@ -37,11 +37,17 @@ public class MapSystem : MonoBehaviour {
         {
             bool vectorsEqual = Vector2.SqrMagnitude(byX - byY) == 0;
 
-            CreateWall(byX + offset);
+            Vector2 byX_wall = byX;
+            byX_wall.Scale(Tile_Size);
+            byX_wall += offset;
+            CreateWall(byX_wall);
 
             if(!vectorsEqual)
             {
-                CreateWall(byY + offset);
+                Vector2 byY_wall = byY;
+                byY_wall.Scale(Tile_Size);
+                byY_wall += offset;
+                CreateWall(byY_wall);
             }
 
             byX += (Mathf.Abs(byX.x) < Map_Size.x-1) ? Vector2.right : Vector2.down;
