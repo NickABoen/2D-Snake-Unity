@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerSystem : MonoBehaviour {
     public HeadComponent playerHead;
+    public int StartingSegments = 3;
 
     private Vector2 temp_direction;
 
@@ -13,6 +14,7 @@ public class PlayerSystem : MonoBehaviour {
 
     public void Spawn(Vector2 position)
     {
+        playerHead = Instantiate(HeadComponent.Head_Prefab).GetComponent<HeadComponent>();
     }
 	
 	// Update is called once per frame
