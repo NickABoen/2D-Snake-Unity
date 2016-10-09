@@ -22,7 +22,7 @@ public class TimerComponent : MonoBehaviour {
         }
     }
 
-	void Tick() {
+	public void Tick() {
         if (!(isStopped || isPaused))
         {
             time_left -= Time.deltaTime;
