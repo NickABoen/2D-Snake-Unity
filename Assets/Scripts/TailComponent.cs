@@ -11,7 +11,7 @@ public class TailComponent : MonoBehaviour {
     {
         if (tail != null)
         {
-            tail.UpdatePosition(position, tails_to_add);
+            tail.UpdatePosition(position, add_tail);
         }
         else if (add_tail)
         {
