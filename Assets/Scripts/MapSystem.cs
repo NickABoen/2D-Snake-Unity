@@ -30,7 +30,7 @@ public class MapSystem : MonoBehaviour {
         offset_initial.Scale(Tile_Size);
         Vector2 offset = (offset_initial / 2);
         offset.Scale(Vector2.left + Vector2.up);
-        offset.y -= Tile_Size.y;
+        offset.y -= Tile_Size.y;b
 
         int max = (int)(Map_Size.x + Map_Size.y - 1);
         for(int i = 0; i < max; i++)
