@@ -14,6 +14,20 @@ public class TimerComponent : MonoBehaviour
     private bool isPaused;
     private bool isStopped;
 
+    public static TimerComponent CreateComponent(GameObject source, 
+        float totalTime, UnityEvent onTimeOut, bool recurring = false, bool destroyWhenFinished = false)
+    {
+        TimerComponent new_component = source.AddComponent<TimerComponent>();
+        new_component.Recurring = recurring;
+        new_component.DestroyWhenFinished = destroyWhenFinished;
+        new_component.TotalTime = totalTime;
+        new_component.OnTimeOut = onTimeOut;
+        return new_component;
+    }
+
+    /// <summary>
+    /// Initialize private variables where necessary when created
+    /// </summary>
     void Awake()
     {
         time_left = TotalTime;
