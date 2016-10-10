@@ -21,7 +21,8 @@ public class TimerComponent : MonoBehaviour
         new_component.Recurring = recurring;
         new_component.DestroyWhenFinished = destroyWhenFinished;
         new_component.TotalTime = totalTime;
-        new_component.OnTimeOut = onTimeOut;
+        if(onTimeOut != null)
+            new_component.OnTimeOut = onTimeOut;
         return new_component;
     }
 
