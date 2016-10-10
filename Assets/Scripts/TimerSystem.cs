@@ -2,23 +2,47 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TimerSystem : MonoBehaviour {
-    private List<TimerComponent> GeneralTimers;
-    private List<TimerComponent> DestructableTimers;
+public class TimerSystem : MonoBehaviour
+{
+    private List<TimerComponent> Timers;
 
     void Awake()
     {
-        GeneralTimers = new List<TimerComponent>();
-        DestructableTimers = new List<TimerComponent>();
+        Timers = new List<TimerComponent>();
     }
 
     void Update()
     {
-        foreach(TimerComponent tc in GeneralTimers)
+        foreach (TimerComponent tc in Timers)
         {
+            Tick_Component(tc);
         }
-        foreach(TimerComponent tc in DestructableTimers)
+    }
+
+    private void Tick_Component(TimerComponent tc)
+    {
+        if (tc.CanTick())
         {
+            tc.Tick();
+
+            if (tc.TimesUp())
+            {
+                tc.Trigger();
+
+                if (tc.DestroyWhenFinished)
+                {
+                    Timers.Remove(tc);
+                    Destroy(tc);
+                }
+                else if (tc.Recurring)
+                {
+                    tc.Restart();
+                }
+                else
+                {
+                    tc.Stop();
+                }
+            }
         }
     }
 }
