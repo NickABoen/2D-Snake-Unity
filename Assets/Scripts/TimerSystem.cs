@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class TimerSystem : MonoBehaviour
 {
     private List<TimerComponent> Timers;
+    private List<TimerComponent> DeletionList;
 
     /// <summary>
     /// Initialize list of timers upon creation
@@ -12,6 +13,7 @@ public class TimerSystem : MonoBehaviour
     void Awake()
     {
         Timers = new List<TimerComponent>();
+        DeletionList = new List<TimerComponent>();
     }
 
     /// <summary>
@@ -21,7 +23,19 @@ public class TimerSystem : MonoBehaviour
     {
         foreach (TimerComponent tc in Timers)
         {
-            Tick_Component(tc);
+            if (tc == null)
+                DeletionList.Add(tc);
+            else
+                Tick_Component(tc);
+        }
+
+        if (DeletionList.Count > 0)
+        {
+            foreach (TimerComponent tc in DeletionList)
+            {
+                RemoveTimer(tc);
+            }
+            DeletionList.Clear();
         }
     }
 
