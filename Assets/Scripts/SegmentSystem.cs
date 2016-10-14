@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SegmentSystem : MonoBehaviour {
+    public GameObject Head_Prefab, Segment_Prefab;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    FollowerComponent Head, Tail;
+    List<FollowerComponent> Segment_list;
+    TimerSystem timer_system;
+
+    public int Size;
+    int current_size;
+
+    TimerComponent step_timer;
+    Vector2 direction;
 }
