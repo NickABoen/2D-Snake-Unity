@@ -12,6 +12,7 @@ public enum Direction
 
 public class SegmentSystem : MonoBehaviour {
     public GameObject Head_Prefab, Segment_Prefab;
+    public Direction DefaultDirection;
     public int Size;
 
     FollowerComponent Head, Tail;
@@ -72,6 +73,24 @@ public class SegmentSystem : MonoBehaviour {
 
     void ChangeDirection(Direction newDirection)
     {
+        switch (direction)
+        {
+            case Direction.DOWN:
+                direction = (newDirection == Direction.UP) ? direction : newDirection;
+                break;
+            case Direction.LEFT:
+                direction = (newDirection == Direction.RIGHT) ? direction : newDirection;
+                break;
+            case Direction.RIGHT:
+                direction = (newDirection == Direction.LEFT) ? direction : newDirection;
+                break;
+            case Direction.UP:
+                direction = (newDirection == Direction.DOWN) ? direction : newDirection;
+                break;
+            default:
+                direction = DefaultDirection;
+                break;
+        }
     }
 
     FollowerComponent CreateSegment()
