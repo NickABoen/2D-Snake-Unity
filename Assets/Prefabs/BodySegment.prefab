@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000012520721974}
   - 212: {fileID: 212000014135832618}
   m_Layer: 0
-  m_Name: HeadSegment
+  m_Name: BodySegment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
