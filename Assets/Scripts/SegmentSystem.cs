@@ -17,7 +17,23 @@ public class SegmentSystem : MonoBehaviour {
 
     public void UpdatePositions()
     {
+        if(Size < Segment_list.Count)
+        {
+        }
 
+        Vector2 next_position = Vector2.zero;
+        Vector2 new_position = Vector2.zero;
+        foreach(FollowerComponent segment in Segment_list)
+        {
+            if (segment.IsLeader)
+            {
+                next_position = segment.position + direction;
+            }
+
+            new_position = next_position;
+            next_position = segment.position;
+            segment.position = new_position;
+        }
     }
 
     void AddSegment()
