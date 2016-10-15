@@ -1,15 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AssetManager : MonoBehaviour {
+public class AssetManager : Singleton<AssetManager>{
+    protected AssetManager() { } //block the constructor from being used for a singleton
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    //Anything can be added here now
 }

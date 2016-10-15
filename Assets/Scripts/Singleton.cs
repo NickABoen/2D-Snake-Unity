@@ -3,7 +3,9 @@
     http://wiki.unity3d.com/index.php/Singleton
     which is available under the Creative Commons Attribution-ShareAlike (CC by SA) License
     License information can be found here: https://creativecommons.org/licenses/by-sa/3.0/
-    Source has been unchanged (aside from this comment block) from the original as of 10/15/2016
+    Source has been mostly unchanged (aside from this comment block) from the original as of 10/15/2016
+    List of changes is as follows:
+        *Commented out Debug.Log() call on line 65 for normal working use case to avoid superfluous prints
 */
 
 using UnityEngine;
@@ -60,8 +62,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                             "' was created with DontDestroyOnLoad.");
                     }
                     else {
-                        Debug.Log("[Singleton] Using instance already created: " +
-                            _instance.gameObject.name);
+                        //Debug.Log("[Singleton] Using instance already created: " + _instance.gameObject.name);
                     }
                 }
 
