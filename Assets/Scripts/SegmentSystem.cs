@@ -19,6 +19,7 @@ public class SegmentSystem : MonoBehaviour {
     {
         if(Size < Segment_list.Count)
         {
+            Segment_list.Add(CreateSegment());
         }
 
         Vector2 next_position = Vector2.zero;
@@ -42,6 +43,11 @@ public class SegmentSystem : MonoBehaviour {
     }
 
     void ChangeDirection(Vector2 newDirection)
+    {
+
+    }
+
+    FollowerComponent CreateSegment()
     {
 
     }
