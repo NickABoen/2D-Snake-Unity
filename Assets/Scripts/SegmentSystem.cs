@@ -14,4 +14,19 @@ public class SegmentSystem : MonoBehaviour {
 
     TimerComponent step_timer;
     Vector2 direction;
+
+    public void UpdatePositions()
+    {
+
+    }
+
+    void AddSegment()
+    {
+
+    }
+
+    void ChangeDirection(Vector2 newDirection)
+    {
+
+    }
 }
