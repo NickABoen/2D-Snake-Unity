@@ -17,10 +17,7 @@ public class SegmentSystem : MonoBehaviour {
 
     public void UpdatePositions()
     {
-        if(Size < Segment_list.Count)
-        {
-            Segment_list.Add(CreateSegment());
-        }
+        AddSegment();
 
         Vector2 next_position = Vector2.zero;
         Vector2 new_position = Vector2.zero;
@@ -39,7 +36,10 @@ public class SegmentSystem : MonoBehaviour {
 
     void AddSegment()
     {
-
+        if(Size < Segment_list.Count)
+        {
+            Segment_list.Add(CreateSegment());
+        }
     }
 
     void ChangeDirection(Vector2 newDirection)
