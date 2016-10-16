@@ -36,7 +36,6 @@ public class SegmentSystem : MonoBehaviour {
         UnityEvent update_event = new UnityEvent();
         update_event.AddListener(new UnityAction(UpdatePositions));
         step_timer = TimerComponent.CreateComponent(gameObject, Step_time, update_event, true, false);
-        step_timer.name = "Segment System Timer";
         step_timer.Stop();
     }
 
