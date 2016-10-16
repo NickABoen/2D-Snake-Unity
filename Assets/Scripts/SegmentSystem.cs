@@ -14,7 +14,14 @@ public enum Direction
 public class SegmentSystem : MonoBehaviour {
     public Direction DefaultDirection;
     public float Step_time = 1;
+    public Vector2 StartPosition;
     public int Size;
+
+    public Vector2 Position
+    {
+        get { if (Segment_list.Count > 0) return Segment_list[0].position; else return Vector2.zero; }
+        set { if(Segment_list.Count > 0) Segment_list[0].position = value; }
+    }
 
     List<FollowerComponent> Segment_list;
     TimerSystem timer_system;
@@ -128,6 +135,11 @@ public class SegmentSystem : MonoBehaviour {
         if(segment_component != null)
         {
             segment_component.IsLeader = Segment_list.Count > 0;
+        }
+
+        if(Segment_list.Count == 0)
+        {
+            segment_component.position = StartPosition;
         }
 
         return segment_component;
