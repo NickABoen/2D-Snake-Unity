@@ -50,7 +50,42 @@ public class SegmentSystem : MonoBehaviour {
 
     void Update()
     {
-
+        if(InputSystem.Instance.Direction == InputSystem.InputDirection.LEFT)
+        {
+            switch (direction)
+            {
+                case Direction.UP:
+                    input_direction = Direction.LEFT;
+                    break;
+                case Direction.DOWN:
+                    input_direction = Direction.RIGHT;
+                    break;
+                case Direction.LEFT:
+                    input_direction = Direction.DOWN;
+                    break;
+                case Direction.RIGHT:
+                    input_direction = Direction.UP;
+                    break;
+            }
+        }
+        else if(InputSystem.Instance.Direction == InputSystem.InputDirection.RIGHT)
+        {
+            switch (direction)
+            {
+                case Direction.UP:
+                    input_direction = Direction.RIGHT;
+                    break;
+                case Direction.DOWN:
+                    input_direction = Direction.LEFT;
+                    break;
+                case Direction.LEFT:
+                    input_direction = Direction.UP;
+                    break;
+                case Direction.RIGHT:
+                    input_direction = Direction.DOWN;
+                    break;
+            }
+        }
     }
 
     void OnEnable()

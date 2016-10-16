@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InputSystem : Singleton<InputSystem>{
     public enum InputDirection { NONE, LEFT, RIGHT };
-    InputDirection Direction;
+    public InputDirection Direction;
 
 	// Update is called once per frame
 	void Update () {
