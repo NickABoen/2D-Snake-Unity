@@ -95,6 +95,14 @@ public class SegmentSystem : MonoBehaviour {
 
     FollowerComponent CreateSegment()
     {
+        GameObject new_segment = ComponentFactory.CreateSnakeSegment(Segment_list.Count > 0);
+        FollowerComponent segment_component = new_segment.GetComponent<FollowerComponent>();
 
+        if(segment_component != null)
+        {
+            segment_component.IsLeader = Segment_list.Count > 0;
+        }
+
+        return segment_component;
     }
 }
