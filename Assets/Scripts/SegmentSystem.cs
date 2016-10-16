@@ -27,7 +27,7 @@ public class SegmentSystem : MonoBehaviour {
     TimerSystem timer_system;
 
     TimerComponent step_timer;
-    Direction direction;
+    Direction direction, input_direction;
 
     void Awake()
     {
@@ -48,6 +48,11 @@ public class SegmentSystem : MonoBehaviour {
         }
     }
 
+    void Update()
+    {
+
+    }
+
     void OnEnable()
     {
         step_timer.Play();
@@ -60,6 +65,7 @@ public class SegmentSystem : MonoBehaviour {
 
     public void UpdatePositions()
     {
+        direction = input_direction;
         AddSegment();
 
         Vector2 direction_value;
@@ -110,19 +116,19 @@ public class SegmentSystem : MonoBehaviour {
         switch (direction)
         {
             case Direction.DOWN:
-                direction = (newDirection == Direction.UP) ? direction : newDirection;
+                input_direction = (newDirection == Direction.UP) ? direction : newDirection;
                 break;
             case Direction.LEFT:
-                direction = (newDirection == Direction.RIGHT) ? direction : newDirection;
+                input_direction = (newDirection == Direction.RIGHT) ? direction : newDirection;
                 break;
             case Direction.RIGHT:
-                direction = (newDirection == Direction.LEFT) ? direction : newDirection;
+                input_direction = (newDirection == Direction.LEFT) ? direction : newDirection;
                 break;
             case Direction.UP:
-                direction = (newDirection == Direction.DOWN) ? direction : newDirection;
+                input_direction = (newDirection == Direction.DOWN) ? direction : newDirection;
                 break;
             default:
-                direction = DefaultDirection;
+                input_direction = DefaultDirection;
                 break;
         }
     }
