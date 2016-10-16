@@ -98,6 +98,11 @@ public class SegmentSystem : MonoBehaviour {
         step_timer.Stop();
     }
 
+    public void AddSegmentToTail()
+    {
+        Size++;
+    }
+
     public void UpdatePositions()
     {
         direction = input_direction;
