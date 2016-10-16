@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,15 +12,12 @@ public enum Direction
 }
 
 public class SegmentSystem : MonoBehaviour {
-    public GameObject Head_Prefab, Segment_Prefab;
     public Direction DefaultDirection;
+    public float Step_time = 1;
     public int Size;
 
-    FollowerComponent Head, Tail;
     List<FollowerComponent> Segment_list;
     TimerSystem timer_system;
-
-    int current_size;
 
     TimerComponent step_timer;
     Direction direction;
@@ -27,6 +25,30 @@ public class SegmentSystem : MonoBehaviour {
     void Awake()
     {
         Segment_list = new List<FollowerComponent>();
+        direction = DefaultDirection;
+        UnityEvent update_event = new UnityEvent();
+        update_event.AddListener(new UnityAction(UpdatePositions));
+        step_timer = TimerComponent.CreateComponent(gameObject, Step_time, update_event, true, false);
+        step_timer.Stop();
+    }
+
+    void Start()
+    {
+        timer_system = gameObject.GetComponent<TimerSystem>();
+        if(timer_system != null)
+        {
+            timer_system.AddTimer(step_timer);
+        }
+    }
+
+    void OnEnable()
+    {
+        step_timer.Play();
+    }
+
+    void OnDisable()
+    {
+        step_timer.Stop();
     }
 
     public void UpdatePositions()
