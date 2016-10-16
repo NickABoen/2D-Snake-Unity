@@ -99,7 +99,7 @@ public class SegmentSystem : MonoBehaviour {
 
     void AddSegment()
     {
-        if(Size < Segment_list.Count)
+        if(Size > Segment_list.Count)
         {
             Segment_list.Add(CreateSegment());
         }
@@ -129,7 +129,7 @@ public class SegmentSystem : MonoBehaviour {
 
     FollowerComponent CreateSegment()
     {
-        GameObject new_segment = ComponentFactory.CreateSnakeSegment(Segment_list.Count > 0);
+        GameObject new_segment = ComponentFactory.CreateSnakeSegment(Segment_list.Count == 0);
         FollowerComponent segment_component = new_segment.GetComponent<FollowerComponent>();
 
         if(Segment_list.Count == 0)
