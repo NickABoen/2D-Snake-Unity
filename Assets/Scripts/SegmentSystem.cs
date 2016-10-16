@@ -24,6 +24,11 @@ public class SegmentSystem : MonoBehaviour {
     TimerComponent step_timer;
     Direction direction;
 
+    void Awake()
+    {
+        Segment_list = new List<FollowerComponent>();
+    }
+
     public void UpdatePositions()
     {
         AddSegment();
